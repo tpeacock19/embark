@@ -1435,8 +1435,8 @@ Returns choosen command."
           (condition-case nil
               (completing-read
                (if (memq 'embark--become-inject minibuffer-setup-hook)
-                   "Become: "
-                 "Action: ")
+                   embark-become-indicator
+                 embark-action-indicator)
                (if embark-keymap-help-docstrings
                    (lambda (s p a)
                      (if (eq a 'metadata)

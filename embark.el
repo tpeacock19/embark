@@ -488,7 +488,7 @@ If you are using `embark-completing-read' as your
     (when (or (boundp sym)
               (fboundp sym)
               (facep sym))
-    'symbol)))
+      'symbol)))
 
 (defun embark-buffer-target-type (cand)
   "Report buffer type if CAND is a buffer name."
@@ -879,8 +879,8 @@ This function is used as :after advice for `tabulated-list-revert'."
   (or ; found this in `describe-package-1'
    (car (alist-get pkg package-alist))
    (if-let ((built-in (assq pkg package--builtins)))
-           (package--from-builtin built-in)
-           (car (alist-get pkg package-archive-contents)))))
+       (package--from-builtin built-in)
+     (car (alist-get pkg package-archive-contents)))))
 
 (defun embark--annotation-function ()
   "Get current annotation-function."
@@ -1258,7 +1258,7 @@ Argument BUFFER-NAME specifies the name of the created buffer."
     (setq embark-occur-linked-buffer buffer)
     (with-current-buffer buffer
       (delay-mode-hooks (embark-occur-mode)) ; we'll run them when the
-                                             ; buffer is displayed, so
+                                        ; buffer is displayed, so
                                         ; they can use the window
       (setq tabulated-list-use-header-line nil) ; default to no header
       (setq embark-occur-from from)
@@ -1381,7 +1381,7 @@ Live Occur buffer popup soon after you type something in the
 minibuffer; the length of the delay after typing is given by
 `embark-live-occur-initial-delay'."
   (when minibuffer-completion-table
-   (add-hook 'after-change-functions #'embark--wait-for-input nil t)))
+    (add-hook 'after-change-functions #'embark--wait-for-input nil t)))
 
 (defun embark-switch-to-live-occur ()
   "Switch to the Embark Live Occur buffer."
@@ -1454,8 +1454,8 @@ Returns the chosen command."
            unless (or (embark--omit-binding-p cmd)
                       (eq cmd 'embark-keymap-help))
            collect (let ((desc (if (numberp key)
-                                       (single-key-description key)
-                                     (key-description key)))
+                                   (single-key-description key)
+                                 (key-description key)))
                          (name (symbol-name cmd)))
                      (propertize name
                                  'display
